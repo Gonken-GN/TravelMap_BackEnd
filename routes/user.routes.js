@@ -8,10 +8,10 @@
 
 import express from "express";
 
-import { addNewUser, login, getAllPin } from "../controllers/user.controller.js";
+import { addNewUser, login, getAllUser } from "../controllers/user.controller.js";
 const router = express.Router();
 
 router.post("/", addNewUser);
-router.get("/", getAllPin);
+router.get("/", getAllUser);
 router.post("/login", login);
 export default router;
