@@ -46,7 +46,7 @@ export const login = async (
 ) => {
   const { username, password } = req.body;
   try {
-    const user = await User.find({ username: username });
+    const user = await User.findOne({ username: username });
     if (!user) {
       const response = res.status(404).json({
         status: "fail",
@@ -78,13 +78,13 @@ export const login = async (
     return response;
   }
 };
-export const getAllPin = async (
+export const getAllUser = async (
   /** @type import('express').Request */ req,
   /** @type import('express').Response */ res
 ) => {
   try {
-    const pins = await Pin.find();
-    if (pins == null) {
+    const users = await User.find();
+    if (users == null) {
       const response = res.status(400).json({
         status: "fail",
         message: "Bad Request.",
@@ -94,7 +94,7 @@ export const getAllPin = async (
     const response = res.status(200).json({
       status: "success",
       data: {
-        pins,
+        users,
       },
     });
     return response;
